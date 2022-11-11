@@ -104,6 +104,10 @@ class MainActivity : AppCompatActivity() {
         // make selected button un-clickable
         button?.isClickable = false
 
+
+
+
+
         // change player
         if (first.text == "Player X's Turn") {
             first.text = "Player O's Turn"
@@ -111,5 +115,80 @@ class MainActivity : AppCompatActivity() {
         else {
             first.text = "Player X's Turn"
         }
+        checkForWinner()
     }
+
+    private fun checkForWinner() {
+        // current player text
+        val currentPlayer = findViewById<TextView>(R.id.textView10)
+        // get button using the id
+        val button01 = findViewById<Button>(R.id.button)
+        val button02 = findViewById<Button>(R.id.button2)
+        val button03 = findViewById<Button>(R.id.button3)
+        val button04 = findViewById<Button>(R.id.button4)
+        val button05 = findViewById<Button>(R.id.button6)
+        val button06 = findViewById<Button>(R.id.button7)
+        val button07 = findViewById<Button>(R.id.button5)
+        val button08 = findViewById<Button>(R.id.button8)
+        val button09 = findViewById<Button>(R.id.button9)
+
+        // check for a tie
+
+
+        //check if X is a winner
+        if ((button01.text == "X" && button02.text == "X" && button03.text == "X")
+            || (button04.text == "X" && button05.text == "X" && button06.text == "X")
+            || (button07.text == "X" && button08.text == "X" && button09.text == "X")
+            || (button01.text == "X" && button04.text == "X" && button07.text == "X")
+            || (button02.text == "X" && button05.text == "X" && button08.text == "X")
+            || (button03.text == "X" && button06.text == "X" && button09.text == "X")
+            || (button01.text == "X" && button05.text == "X" && button09.text == "X")
+            || (button03.text == "X" && button05.text == "X" && button07.text == "X")) {
+                currentPlayer.text = "Player X is the WINNER!!!"
+                disableAllbuttons(button01)
+                disableAllbuttons(button02)
+                disableAllbuttons(button03)
+                disableAllbuttons(button04)
+                disableAllbuttons(button05)
+                disableAllbuttons(button06)
+                disableAllbuttons(button07)
+                disableAllbuttons(button08)
+                disableAllbuttons(button09)
+        }
+
+        //check if O is a winner
+        if ((button01.text == "O" && button02.text == "O" && button03.text == "O")
+            || (button04.text == "O" && button05.text == "O" && button06.text == "O")
+            || (button07.text == "O" && button08.text == "O" && button09.text == "O")
+            || (button01.text == "O" && button04.text == "O" && button07.text == "O")
+            || (button02.text == "O" && button05.text == "O" && button08.text == "O")
+            || (button03.text == "O" && button06.text == "O" && button09.text == "O")
+            || (button01.text == "O" && button05.text == "O" && button09.text == "O")
+            || (button03.text == "O" && button05.text == "O" && button07.text == "O")) {
+                currentPlayer.text = "Player O is the WINNER!!!"
+                disableAllbuttons(button01)
+                disableAllbuttons(button02)
+                disableAllbuttons(button03)
+                disableAllbuttons(button04)
+                disableAllbuttons(button05)
+                disableAllbuttons(button06)
+                disableAllbuttons(button07)
+                disableAllbuttons(button08)
+                disableAllbuttons(button09)
+        }
+
+        if ((button01.isClickable == false && button02.isClickable == false && button03.isClickable == false &&
+            button04.isClickable == false && button05.isClickable == false && button06.isClickable == false &&
+            button07.isClickable == false && button08.isClickable == false && button09.isClickable == false)
+            && currentPlayer.text != "Player O is the WINNER!!!"
+            && currentPlayer.text != "Player X is the WINNER!!!") {
+            currentPlayer.text = "There is a Tie!!!"
+        }
+
+    }
+
+    private fun disableAllbuttons(button: Button?) {
+        button?.isClickable = false
+    }
+
 }
